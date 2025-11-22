@@ -1,4 +1,4 @@
-package com.example.demo.client;
+package com.example.demo.client.jph;
 
 import java.util.List;
 
