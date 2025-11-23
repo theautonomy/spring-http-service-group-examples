@@ -1,0 +1,32 @@
+= Spring Boot 4 HTTP Service Interface Clients - Usage Example
+
+== Client registration
+* Using @ImportHttpServices
+* AbstractHttpServiceRegistrar
+
+== Client configuration
+* Use application.properties
+** Service group: base-url, timeout, custom http header, etc
+* Use RestClientHttpServiceGroupConfigurer
+** Add custom error handler
+** Add interceptor
+** Set base-url
+** Add HTTP header
+
+== Client for OAuth2 protected service
+* Configure OAuth2 client in application.properties
+* Use OAuth2RestClientHttpServiceGroupConfigurer 
+
+== Global configuration
+* Timeouts
+* HTTP factory choice (Apache HTTP Component, Jetty, JDK)
+
+== Todo
+
+=== Call service protected by HTTP basic authentication
+
+=== Usage example using HttpServiceProxyRegistry 
+
+=== Use HttpServiceArgumentResolver 
+
+=== Use HttpServiceArgumentResolver for RestClient customization 
