@@ -18,7 +18,7 @@ public interface JsonPlaceholderClient {
     @GetExchange("/posts")
     List<Post> getAllPosts();
 
-    @GetExchange("/posts/{id}")
+    @GetExchange(url = "/posts/{id}", version = "2.0.0")
     Post getPostById(@PathVariable Long id);
 
     @GetExchange("/posts/{postId}/comments")

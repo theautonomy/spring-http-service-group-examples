@@ -28,10 +28,9 @@
 
 == Unit tests 
 
-== Todo
-
 === Versioning example
 
+== Todo
 
 === Usage example of HttpServiceProxyRegistry if there are multiple client proxies of the same type 
 * See details from https://docs.spring.io/spring-framework/reference/integration/rest-clients.html#rest-http-service-client

@@ -46,6 +46,7 @@ public class HttpClientConfig {
                             (group, clientBuilder) -> {
                                 clientBuilder.defaultStatusHandler(new CustomErrorHandler());
 
+                                clientBuilder.requestInterceptor(new LoggingInterceptor());
                                 // custom restclient builder
                                 // clientBuilder.apply((builder) -> {});
                             });

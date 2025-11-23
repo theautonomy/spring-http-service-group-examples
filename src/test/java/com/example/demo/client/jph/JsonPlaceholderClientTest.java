@@ -1,6 +1,7 @@
 package com.example.demo.client.jph;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.header;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.method;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo;
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess;
@@ -16,6 +17,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.client.MockRestServiceServer;
+import org.springframework.web.client.ApiVersionInserter;
 import org.springframework.web.client.RestClient;
 import org.springframework.web.client.support.RestClientAdapter;
 import org.springframework.web.service.invoker.HttpServiceProxyFactory;
@@ -30,7 +32,10 @@ class JsonPlaceholderClientTest {
         RestClient.Builder builder = RestClient.builder();
         server = MockRestServiceServer.bindTo(builder).build();
 
-        RestClient restClient = builder.build();
+        // Purposely use "X-API-VERSION2"
+        // Line 92 needs to match
+        RestClient restClient =
+                builder.apiVersionInserter(ApiVersionInserter.useHeader("X-API-VERSION2")).build();
         RestClientAdapter adapter = RestClientAdapter.create(restClient);
         HttpServiceProxyFactory factory = HttpServiceProxyFactory.builderFor(adapter).build();
 
@@ -87,7 +92,8 @@ class JsonPlaceholderClientTest {
             }
             """;
 
-        server.expect(requestTo("/posts/1"))
+        server.expect(header("X-API-VERSION2", "2.0.0"))
+                .andExpect(requestTo("/posts/1"))
                 .andExpect(method(HttpMethod.GET))
                 .andRespond(withSuccess(jsonResponse, MediaType.APPLICATION_JSON));
 
