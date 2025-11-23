@@ -11,6 +11,7 @@ import org.springframework.security.oauth2.client.OAuth2AuthorizedClientManager;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClientProviderBuilder;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
+import org.springframework.security.oauth2.client.web.client.OAuth2ClientHttpRequestInterceptor;
 import org.springframework.security.oauth2.client.web.client.support.OAuth2RestClientHttpServiceGroupConfigurer;
 import org.springframework.web.client.support.RestClientHttpServiceGroupConfigurer;
 import org.springframework.web.service.registry.ImportHttpServices;
@@ -58,10 +59,12 @@ public class HttpClientConfig {
             groups.filterByName("github")
                     .forEachClient(
                             (group, clientBuilder) -> {
-                                // Add OAuth2 interceptor for GitHub
+                                // Add Spring's OAuth2 interceptor for GitHub
                                 var oauth2Interceptor =
-                                        new OAuth2ClientInterceptor(
-                                                authorizedClientManager, "github");
+                                        new OAuth2ClientHttpRequestInterceptor(
+                                                authorizedClientManager);
+                                oauth2Interceptor.setClientRegistrationIdResolver(
+                                        request -> "github");
                                 clientBuilder.requestInterceptor(oauth2Interceptor);
                             });
 

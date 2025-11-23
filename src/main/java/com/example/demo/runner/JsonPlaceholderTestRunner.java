@@ -1,13 +1,10 @@
 package com.example.demo.runner;
 
 import java.util.List;
-import java.util.Map;
 
 import com.example.demo.client.ara.RestfulApiClient;
 import com.example.demo.client.httpbin.HttpBinClient;
 import com.example.demo.client.jph.JsonPlaceholderClient;
-import com.example.demo.model.ApiObject;
-import com.example.demo.model.ApiObjectRequest;
 import com.example.demo.model.BasicAuthResponse;
 import com.example.demo.model.Comment;
 import com.example.demo.model.Post;
@@ -117,6 +114,7 @@ public class JsonPlaceholderTestRunner implements CommandLineRunner {
         System.out.println("\n=== All JSONPlaceholder tests completed! ===\n");
 
         // ===== Restful API Dev Tests =====
+        /*
         System.out.println("\n=== Testing Restful-API.dev HTTP Service Client ===\n");
 
         // Test 1: Get all objects (limited to first 5)
@@ -182,6 +180,8 @@ public class JsonPlaceholderTestRunner implements CommandLineRunner {
         System.out.println("   Object deleted successfully");
 
         System.out.println("\n=== All Restful-API.dev tests completed! ===\n");
+
+        */
 
         // ===== HTTP Basic Authentication Test =====
         System.out.println("\n=== Testing HTTP Basic Authentication ===\n");
