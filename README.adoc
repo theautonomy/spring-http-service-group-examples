@@ -12,6 +12,7 @@
 ** Add interceptor
 ** Set base-url
 ** Add HTTP header
+** Allow further filtering of client withing the group
 
 == Client for OAuth2 protected service
 * Configure OAuth2 client in application.properties

@@ -34,6 +34,12 @@ public class HttpClientConfig {
     public RestClientHttpServiceGroupConfigurer groupConfigurer() {
         return groups -> {
             groups.filterByName("jph")
+                    // Allow further filtering of client withing the group
+                    .filter(
+                            httpServiceGroup ->
+                                    httpServiceGroup
+                                            .httpServiceTypes()
+                                            .contains(JsonPlaceholderClient.class))
                     .forEachClient(
                             (group, clientBuilder) -> {
                                 clientBuilder.defaultStatusHandler(new CustomErrorHandler());
