@@ -202,6 +202,39 @@ public class JsonPlaceholderTestRunner implements CommandLineRunner {
 
         System.out.println("\n=== HTTP Basic Authentication test completed! ===\n");
 
+        // ===== Custom Message Converter Test =====
+        System.out.println("\n=== Testing Custom Message Converter ===\n");
+        System.out.println("   MyCustomMessageConverter handles text/plain and text/html");
+        System.out.println("   Watch for [MyCustomConverter] log messages in the output\n");
+
+        // Test 1: Get UUID (plain text)
+        System.out.println("1. Calling /uuid (returns plain text):");
+        try {
+            String uuid = httpBinClient.getUuid();
+            System.out.println("   ✓ UUID received (check logs for converter message)");
+            System.out.println("   UUID: " + uuid.trim());
+        } catch (Exception e) {
+            System.out.println("   ✗ Failed: " + e.getMessage());
+        }
+
+        // Test 2: Get HTML
+        System.out.println("\n2. Calling /html (returns HTML text):");
+        try {
+            String html = httpBinClient.getHtml();
+            int htmlLength = html.length();
+            System.out.println(html);
+            System.out.println("   ✓ HTML received (check logs for converter message)");
+            System.out.println("   HTML length: " + htmlLength + " bytes");
+            System.out.println(
+                    "   Preview: "
+                            + html.substring(0, Math.min(80, htmlLength)).replaceAll("\\n", " ")
+                            + "...");
+        } catch (Exception e) {
+            System.out.println("   ✗ Failed: " + e.getMessage());
+        }
+
+        System.out.println("\n=== Custom Message Converter test completed! ===\n");
+
         // ===== GitHub User Service Tests =====
         System.out.println("\n=== GitHub User Service (OAuth2) ===\n");
         System.out.println(

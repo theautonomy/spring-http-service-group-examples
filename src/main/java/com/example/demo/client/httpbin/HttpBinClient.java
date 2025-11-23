@@ -9,4 +9,18 @@ public interface HttpBinClient {
 
     @GetExchange("/basic-auth/{user}/{password}")
     BasicAuthResponse testBasicAuth(@PathVariable String user, @PathVariable String password);
+
+    /**
+     * Get HTML content to test custom message converter. Returns plain HTML text that will be
+     * processed by MyCustomMessageConverter.
+     */
+    @GetExchange("/html")
+    String getHtml();
+
+    /**
+     * Get UUID as plain text to test custom message converter. Returns a UUID string in plain text
+     * format.
+     */
+    @GetExchange("/uuid")
+    String getUuid();
 }

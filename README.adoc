@@ -20,6 +20,8 @@
 
 == Client fo service protected by HTTP basic authentication
 
+== Custom message converter 
+
 == Global configuration
 * Timeouts
 * HTTP factory choice (Apache HTTP Component, Jetty, JDK)

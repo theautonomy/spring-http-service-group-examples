@@ -63,14 +63,23 @@ public class HttpClientConfig {
 
             groups.filterByName("httpbin")
                     .forEachClient(
-                            (group, builder) ->
-                                    builder.apply(
-                                            restClientBuilder ->
-                                                    restClientBuilder.defaultHeaders(
-                                                            headers ->
-                                                                    headers.setBasicAuth(
-                                                                            httpbinUsername,
-                                                                            httpbinPassword))));
+                            (group, clientBuilder) -> {
+                                // HTTP Basic Authentication
+                                clientBuilder.apply(
+                                        restClientBuilder ->
+                                                restClientBuilder.defaultHeaders(
+                                                        headers ->
+                                                                headers.setBasicAuth(
+                                                                        httpbinUsername,
+                                                                        httpbinPassword)));
+
+                                // Custom message converter for text/plain and text/html
+                                clientBuilder.configureMessageConverters(
+                                        (builder) -> {
+                                            builder.addCustomConverter(
+                                                    new MyCustomMessageConverter());
+                                        });
+                            });
         };
     }
 
