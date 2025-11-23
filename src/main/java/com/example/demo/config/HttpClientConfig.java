@@ -96,8 +96,8 @@ public class HttpClientConfig {
         return OAuth2RestClientHttpServiceGroupConfigurer.from(manager);
     }
 
-    // @Bean
-    OAuth2RestClientHttpServiceGroupConfigurer securityConfigurer(
+    @Bean
+    OAuth2AuthorizedClientManager oAuth2AuthorizedClientManager(
             ClientRegistrationRepository clientRegistrationRepository,
             OAuth2AuthorizedClientService authorizedClientService) {
 
@@ -113,6 +113,6 @@ public class HttpClientConfig {
                         clientRegistrationRepository, authorizedClientService);
         authorizedClientManager.setAuthorizedClientProvider(authorizedClientProvider);
 
-        return OAuth2RestClientHttpServiceGroupConfigurer.from(authorizedClientManager);
+        return authorizedClientManager;
     }
 }
