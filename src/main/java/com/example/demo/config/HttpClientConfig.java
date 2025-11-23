@@ -1,5 +1,7 @@
 package com.example.demo.config;
 
+import com.example.demo.client.jph.JsonPlaceholderClient;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -11,8 +13,6 @@ import org.springframework.security.oauth2.client.registration.ClientRegistratio
 import org.springframework.security.oauth2.client.web.client.support.OAuth2RestClientHttpServiceGroupConfigurer;
 import org.springframework.web.client.support.RestClientHttpServiceGroupConfigurer;
 import org.springframework.web.service.registry.ImportHttpServices;
-
-import com.example.demo.client.jph.JsonPlaceholderClient;
 
 @Configuration
 @ImportHttpServices(
@@ -50,6 +50,27 @@ public class HttpClientConfig {
             OAuth2AuthorizedClientManager manager) {
         return OAuth2RestClientHttpServiceGroupConfigurer.from(manager);
     }
+
+    /**
+     * Custom argument resolver configuration for HttpServiceProxyFactory.
+     *
+     * <p>NOTE: The API for registering custom argument resolvers with @ImportHttpServices in Spring
+     * Boot 4.0 is still evolving. The RequestIdArgumentResolver and @RequestId annotation have been
+     * implemented to demonstrate the concept.
+     *
+     * <p>When the API stabilizes, you would register the resolver like this:
+     *
+     * <pre>
+     * @Bean
+     * Consumer<HttpServiceProxyFactory.Builder> httpServiceProxyFactoryCustomizer() {
+     *     return builder -> builder.customArgumentResolvers(
+     *         List.of(new RequestIdArgumentResolver())
+     *     );
+     * }
+     * </pre>
+     *
+     * <p>See docs/CUSTOM_ARGUMENT_RESOLVER.md for full documentation.
+     */
 
     // @Bean
     OAuth2RestClientHttpServiceGroupConfigurer securityConfigurer(

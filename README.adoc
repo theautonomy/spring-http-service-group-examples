@@ -1,8 +1,8 @@
 = Spring Boot 4 HTTP Service Interface Clients - Usage Example
 
 == Client registration
-* Using @ImportHttpServices
-* AbstractHttpServiceRegistrar
+* Use @ImportHttpServices
+* Use AbstractHttpServiceRegistrar
 
 == Client configuration
 * Use application.properties
@@ -25,8 +25,9 @@
 
 === Call service protected by HTTP basic authentication
 
-=== Usage example using HttpServiceProxyRegistry 
+=== Usage example of HttpServiceProxyRegistry if there are multiple client proxies of the same type 
+* See https://docs.spring.io/spring-framework/reference/integration/rest-clients.html#rest-http-service-client.custom-resolver
 
-=== Use HttpServiceArgumentResolver 
+=== Usage example of HttpServiceArgumentResolver 
 
-=== Use HttpServiceArgumentResolver for RestClient customization 
+=== Use RestClientCustomizer for RestClient customization 
