@@ -1,10 +1,9 @@
-package com.example.demo.config;
+package com.example.demo.config.oauth2;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.oauth2.client.AuthorizedClientServiceOAuth2AuthorizedClientManager;
@@ -17,7 +16,7 @@ import org.springframework.security.oauth2.client.web.client.OAuth2ClientHttpReq
 import org.springframework.web.client.support.RestClientHttpServiceGroupConfigurer;
 
 @Configuration
-@ConditionalOnProperty(name = "app.oauth2.enabled", havingValue = "true", matchIfMissing = true)
+@ConditionalOnOAuth2ClientRegistration
 public class OAuth2ClientConfig {
 
     @Value("${httpbin.auth.username}")
