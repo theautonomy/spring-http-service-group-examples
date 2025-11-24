@@ -13,6 +13,7 @@ import org.springframework.security.oauth2.client.web.client.support.OAuth2RestC
 import org.springframework.web.client.support.RestClientHttpServiceGroupConfigurer;
 
 @Configuration
+// @ConditionalOnProperty(prefix = "spring.security.oauth2.client", name = "registration")
 public class OAuth2ClientConfig {
 
     @Value("${httpbin.auth.username}")
@@ -25,27 +26,24 @@ public class OAuth2ClientConfig {
     public RestClientHttpServiceGroupConfigurer groupConfigurerForOAuth2(
             OAuth2AuthorizedClientManager authorizedClientManager) {
         return groups -> {
-            groups.filterByName("github")
-                    .forEachClient(
-                            (group, clientBuilder) -> {
-                                // Add Spring's OAuth2 interceptor for GitHub
-                                var oauth2Interceptor =
-                                        new OAuth2ClientHttpRequestInterceptor(
-                                                authorizedClientManager);
-                                oauth2Interceptor.setClientRegistrationIdResolver(
-                                        request -> "github");
-                                clientBuilder.requestInterceptor(oauth2Interceptor);
-                            });
-            groups.filterByName("otc")
-                    .forEachClient(
-                            (group, clientBuilder) -> {
-                                // Add Spring's OAuth2 interceptor for otc
-                                var oauth2Interceptor =
-                                        new OAuth2ClientHttpRequestInterceptor(
-                                                authorizedClientManager);
-                                oauth2Interceptor.setClientRegistrationIdResolver(request -> "otc");
-                                clientBuilder.requestInterceptor(oauth2Interceptor);
-                            });
+            // List of OAuth2-enabled client groups
+            var oauth2Groups = java.util.List.of("github", "otc");
+
+            // Configure OAuth2 interceptor for each group
+            oauth2Groups.forEach(
+                    groupName -> {
+                        groups.filterByName(groupName)
+                                .forEachClient(
+                                        (group, clientBuilder) -> {
+                                            // Add Spring's OAuth2 interceptor
+                                            var oauth2Interceptor =
+                                                    new OAuth2ClientHttpRequestInterceptor(
+                                                            authorizedClientManager);
+                                            oauth2Interceptor.setClientRegistrationIdResolver(
+                                                    request -> groupName);
+                                            clientBuilder.requestInterceptor(oauth2Interceptor);
+                                        });
+                    });
         };
     }
 

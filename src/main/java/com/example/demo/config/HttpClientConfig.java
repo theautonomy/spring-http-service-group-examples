@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
-import org.springframework.security.oauth2.client.OAuth2AuthorizedClientManager;
 import org.springframework.web.client.support.RestClientHttpServiceGroupConfigurer;
 import org.springframework.web.service.registry.ImportHttpServices;
 
@@ -27,8 +26,7 @@ public class HttpClientConfig {
     private String httpbinPassword;
 
     @Bean
-    public RestClientHttpServiceGroupConfigurer groupConfigurer(
-            OAuth2AuthorizedClientManager authorizedClientManager) {
+    public RestClientHttpServiceGroupConfigurer groupConfigurer() {
         return groups -> {
             groups.filterByName("jph")
                     // Allow further filtering of client withing the group
