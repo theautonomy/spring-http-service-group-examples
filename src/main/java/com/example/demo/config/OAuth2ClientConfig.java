@@ -1,19 +1,23 @@
 package com.example.demo.config;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.oauth2.client.AuthorizedClientServiceOAuth2AuthorizedClientManager;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClientManager;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClientProviderBuilder;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
+import org.springframework.security.oauth2.client.registration.ClientRegistration;
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
 import org.springframework.security.oauth2.client.web.client.OAuth2ClientHttpRequestInterceptor;
-import org.springframework.security.oauth2.client.web.client.support.OAuth2RestClientHttpServiceGroupConfigurer;
 import org.springframework.web.client.support.RestClientHttpServiceGroupConfigurer;
 
 @Configuration
-// @ConditionalOnProperty(prefix = "spring.security.oauth2.client", name = "registration")
+@ConditionalOnProperty(name = "app.oauth2.enabled", havingValue = "true", matchIfMissing = true)
 public class OAuth2ClientConfig {
 
     @Value("${httpbin.auth.username}")
@@ -24,10 +28,17 @@ public class OAuth2ClientConfig {
 
     @Bean
     public RestClientHttpServiceGroupConfigurer groupConfigurerForOAuth2(
-            OAuth2AuthorizedClientManager authorizedClientManager) {
+            OAuth2AuthorizedClientManager authorizedClientManager,
+            ClientRegistrationRepository clientRegistrationRepository) {
         return groups -> {
-            // List of OAuth2-enabled client groups
-            var oauth2Groups = java.util.List.of("github", "otc");
+            // Get list of OAuth2 client registration IDs from application.properties
+            List<String> oauth2Groups = new ArrayList<>();
+            if (clientRegistrationRepository instanceof Iterable) {
+                for (ClientRegistration registration :
+                        (Iterable<ClientRegistration>) clientRegistrationRepository) {
+                    oauth2Groups.add(registration.getRegistrationId());
+                }
+            }
 
             // Configure OAuth2 interceptor for each group
             oauth2Groups.forEach(
@@ -45,12 +56,6 @@ public class OAuth2ClientConfig {
                                         });
                     });
         };
-    }
-
-    @Bean
-    OAuth2RestClientHttpServiceGroupConfigurer securityConfigurer(
-            OAuth2AuthorizedClientManager manager) {
-        return OAuth2RestClientHttpServiceGroupConfigurer.from(manager);
     }
 
     @Bean
