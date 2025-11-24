@@ -6,13 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
-import org.springframework.security.oauth2.client.AuthorizedClientServiceOAuth2AuthorizedClientManager;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClientManager;
-import org.springframework.security.oauth2.client.OAuth2AuthorizedClientProviderBuilder;
-import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
-import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
-import org.springframework.security.oauth2.client.web.client.OAuth2ClientHttpRequestInterceptor;
-import org.springframework.security.oauth2.client.web.client.support.OAuth2RestClientHttpServiceGroupConfigurer;
 import org.springframework.web.client.support.RestClientHttpServiceGroupConfigurer;
 import org.springframework.web.service.registry.ImportHttpServices;
 
@@ -21,6 +15,7 @@ import org.springframework.web.service.registry.ImportHttpServices;
         group = "jph",
         types = {JsonPlaceholderClient.class})
 @ImportHttpServices(group = "github", basePackages = "com.example.demo.client.github")
+@ImportHttpServices(group = "otc", basePackages = "com.example.demo.client.otc")
 @ImportHttpServices(group = "httpbin", basePackages = "com.example.demo.client.httpbin")
 @Import(MyHttpServiceRegistrar.class)
 public class HttpClientConfig {
@@ -57,18 +52,6 @@ public class HttpClientConfig {
                                 clientBuilder.requestInterceptor(new LoggingInterceptor());
                             });
 
-            groups.filterByName("github")
-                    .forEachClient(
-                            (group, clientBuilder) -> {
-                                // Add Spring's OAuth2 interceptor for GitHub
-                                var oauth2Interceptor =
-                                        new OAuth2ClientHttpRequestInterceptor(
-                                                authorizedClientManager);
-                                oauth2Interceptor.setClientRegistrationIdResolver(
-                                        request -> "github");
-                                clientBuilder.requestInterceptor(oauth2Interceptor);
-                            });
-
             groups.filterByName("httpbin")
                     .forEachClient(
                             (group, clientBuilder) -> {
@@ -89,31 +72,5 @@ public class HttpClientConfig {
                                         });
                             });
         };
-    }
-
-    @Bean
-    OAuth2RestClientHttpServiceGroupConfigurer securityConfigurer(
-            OAuth2AuthorizedClientManager manager) {
-        return OAuth2RestClientHttpServiceGroupConfigurer.from(manager);
-    }
-
-    @Bean
-    OAuth2AuthorizedClientManager oAuth2AuthorizedClientManager(
-            ClientRegistrationRepository clientRegistrationRepository,
-            OAuth2AuthorizedClientService authorizedClientService) {
-
-        var authorizedClientProvider =
-                OAuth2AuthorizedClientProviderBuilder.builder()
-                        .authorizationCode()
-                        .refreshToken()
-                        .clientCredentials()
-                        .build();
-
-        var authorizedClientManager =
-                new AuthorizedClientServiceOAuth2AuthorizedClientManager(
-                        clientRegistrationRepository, authorizedClientService);
-        authorizedClientManager.setAuthorizedClientProvider(authorizedClientProvider);
-
-        return authorizedClientManager;
     }
 }

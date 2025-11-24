@@ -39,6 +39,9 @@
 
 == Others
 
+=== OAuth2 security configuration
+* Using @ClientRegistrationId to decorate http client interface and its method seems weird
+
 === Usage example of HttpServiceArgumentResolver 
 * See https://docs.spring.io/spring-framework/reference/integration/rest-clients.html#rest-http-service-client.custom-resolver
 * See branch "custom-argument-resolver"
