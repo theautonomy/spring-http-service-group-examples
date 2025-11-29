@@ -3,7 +3,6 @@ package com.example.demo.config.oauth2;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.oauth2.client.AuthorizedClientServiceOAuth2AuthorizedClientManager;
@@ -18,12 +17,6 @@ import org.springframework.web.client.support.RestClientHttpServiceGroupConfigur
 @Configuration
 @ConditionalOnOAuth2ClientRegistration
 public class OAuth2ClientConfig {
-
-    @Value("${httpbin.auth.username}")
-    private String httpbinUsername;
-
-    @Value("${httpbin.auth.password}")
-    private String httpbinPassword;
 
     @Bean
     public RestClientHttpServiceGroupConfigurer groupConfigurerForOAuth2(

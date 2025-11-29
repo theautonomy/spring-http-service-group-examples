@@ -12,11 +12,15 @@
 ** Add interceptor
 ** Set base-url
 ** Add HTTP header
-** Allow further filtering of client withing the group
+** Allow further filtering of client within the group
 
 == Client for OAuth2 protected service
 * Configure OAuth2 client in application.properties
-* Use OAuth2RestClientHttpServiceGroupConfigurer 
+* Enable http client to call oauth2 protected service
+** Use OAuth2RestClientHttpServiceGroupConfigurer and @ClientRegistrationId
+*** Check commit history of OAuth2ClientConfig.java to find out
+** Use RestClientHttpServiceGroupConfigurer to add oauth2 interceptor to each client 
+*** This is the currnet implementation
 
 == Client fo service protected by HTTP basic authentication
 
@@ -28,11 +32,11 @@
 
 == Unit tests 
 
-=== Versioning example
+== Versioning example
 
-=== Default methods in http client interface for API convenience
+== Default methods in http client interface for API convenience
 
-=== Not using for @ClientRegistrationId for OAuth2 client configuration
+== Not using for @ClientRegistrationId for OAuth2 client configuration
 
 == Todo
 
