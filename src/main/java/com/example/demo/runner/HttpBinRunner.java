@@ -3,16 +3,18 @@ package com.example.demo.runner;
 import com.example.demo.client.httpbin.HttpBinClient;
 import com.example.demo.model.BasicAuthResponse;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 @Component
 public class HttpBinRunner implements CommandLineRunner {
 
-    private final HttpBinClient httpBinClient;
+    private final HttpBinClient thisClient;
 
-    public HttpBinRunner(HttpBinClient httpBinClient) {
-        this.httpBinClient = httpBinClient;
+    // Since we have two HttpBinClient, we need to qualify it
+    public HttpBinRunner(@Qualifier("httpBinClient") HttpBinClient thisBinClient) {
+        this.thisClient = thisBinClient;
     }
 
     @Override
@@ -26,7 +28,7 @@ public class HttpBinRunner implements CommandLineRunner {
         // Test: HTTP Basic Authentication
         System.out.println("1. Calling /basic-auth/mark/secret with HTTP Basic Auth:");
         try {
-            BasicAuthResponse authResponse = httpBinClient.testBasicAuth("mark", "secret");
+            BasicAuthResponse authResponse = thisClient.testBasicAuth("mark", "secret");
             System.out.println("   ✓ Authentication successful!");
             System.out.println("   Authenticated: " + authResponse.authenticated());
             System.out.println("   User: " + authResponse.user());
@@ -44,7 +46,7 @@ public class HttpBinRunner implements CommandLineRunner {
         // Test 1: Get UUID (plain text)
         System.out.println("1. Calling /uuid (returns plain text):");
         try {
-            String uuid = httpBinClient.getUuid();
+            String uuid = thisClient.getUuid();
             System.out.println("   ✓ UUID received (check logs for converter message)");
             System.out.println("   UUID: " + uuid.trim());
         } catch (Exception e) {
@@ -54,7 +56,7 @@ public class HttpBinRunner implements CommandLineRunner {
         // Test 2: Get HTML
         System.out.println("\n2. Calling /html (returns HTML text):");
         try {
-            String html = httpBinClient.getHtml();
+            String html = thisClient.getHtml();
             int htmlLength = html.length();
             System.out.println(html);
             System.out.println("   ✓ HTML received (check logs for converter message)");

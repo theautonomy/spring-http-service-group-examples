@@ -13,9 +13,6 @@ import org.springframework.web.service.invoker.HttpServiceProxyFactory;
 public class HttpServiceConfigExample {
 
     // Configure http service client
-    // This takes precedence and will be used
-    // Spring won't configure this with @ImportHttpServices(group = "httpbin", basePackages =
-    // "com.example.demo.client.httpbin")
     @Bean
     HttpBinClient httpBinClient(
             RestClient.Builder builder,
