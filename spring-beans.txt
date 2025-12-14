@@ -1,13 +1,12 @@
 demoApplication - com.example.demo.DemoApplication
-groupConfigurer - com.example.demo.config.HttpClientConfig$$Lambda/0x00000236b4632260
+groupConfigurer - com.example.demo.config.HttpClientConfig$$Lambda/0x000001eb4b6711f8
 httpClientConfig - com.example.demo.config.HttpClientConfig$$SpringCGLIB$$0
 httpServiceConfigExample - com.example.demo.config.HttpServiceConfigExample$$SpringCGLIB$$0
-securityConfig - com.example.demo.config.SecurityConfig$$SpringCGLIB$$0
-groupConfigurerForOAuth2 - com.example.demo.config.oauth2.OAuth2ClientConfig$$Lambda/0x00000236b4641500
-OAuth2ClientConfig - com.example.demo.config.oauth2.OAuth2ClientConfig$$SpringCGLIB$$0
+groupConfigurerForOAuth2 - com.example.demo.config.oauth2.OAuth2ClientConfig$$Lambda/0x000001eb4b680648
+com.example.demo.config.oauth2.OAuth2ClientConfig - com.example.demo.config.oauth2.OAuth2ClientConfig$$SpringCGLIB$$0
+restclient-com.example.demo.config.restclient.CustomRestClientProperties - com.example.demo.config.restclient.CustomRestClientProperties
 restClientContainer - com.example.demo.config.restclient.DefaultRestClientContainer
-restClientContainerAutoConfiguration - com.example.demo.config.restclient.RestClientContainerAutoConfiguration$$SpringCGLIB$$0
-serviceclient-com.example.demo.config.restclient.ServiceClientAuthProperties - com.example.demo.config.restclient.ServiceClientAuthProperties
+com.example.demo.config.restclient.RestClientContainerAutoConfiguration - com.example.demo.config.restclient.RestClientContainerAutoConfiguration
 githubController - com.example.demo.controller.GithubController
 restClientContainerController - com.example.demo.controller.RestClientContainerController
 apiVersionDebugRunner - com.example.demo.runner.ApiVersionDebugRunner
@@ -18,7 +17,7 @@ github#com.example.demo.client.github.GithubUserService - jdk.proxy2.$Proxy126
 httpbin#com.example.demo.client.httpbin.HttpBinClient - jdk.proxy2.$Proxy127
 httpBinClient - jdk.proxy2.$Proxy127
 jph#com.example.demo.client.jph.JsonPlaceholderClient - jdk.proxy2.$Proxy128
-otc#com.example.demo.client.otc.SecondGithubUserService - jdk.proxy2.$Proxy157
+otc#com.example.demo.client.otc.SecondGithubUserService - jdk.proxy2.$Proxy151
 ara#com.example.demo.client.ara.RestfulApiClient - jdk.proxy2.$Proxy72
 org.springframework.aop.framework.autoproxy.defaultProxyConfig - org.springframework.aop.framework.ProxyConfig
 org.springframework.aop.config.internalAutoProxyCreator - org.springframework.aop.framework.autoproxy.InfrastructureAdvisorAutoProxyCreator
@@ -29,7 +28,7 @@ defaultServletHandlerMapping - org.springframework.beans.factory.support.NullBea
 org.springframework.boot.autoconfigure.AutoConfigurationPackages - org.springframework.boot.autoconfigure.AutoConfigurationPackages$BasePackages
 org.springframework.boot.autoconfigure.aop.AopAutoConfiguration - org.springframework.boot.autoconfigure.aop.AopAutoConfiguration
 org.springframework.boot.autoconfigure.aop.AopAutoConfiguration$ClassProxyingConfiguration - org.springframework.boot.autoconfigure.aop.AopAutoConfiguration$ClassProxyingConfiguration
-forceAutoProxyCreatorToUseClassProxying - org.springframework.boot.autoconfigure.aop.AopAutoConfiguration$ClassProxyingConfiguration$$Lambda/0x00000236b4627560
+forceAutoProxyCreatorToUseClassProxying - org.springframework.boot.autoconfigure.aop.AopAutoConfiguration$ClassProxyingConfiguration$$Lambda/0x000001eb4b6671c8
 org.springframework.boot.autoconfigure.availability.ApplicationAvailabilityAutoConfiguration - org.springframework.boot.autoconfigure.availability.ApplicationAvailabilityAutoConfiguration
 org.springframework.boot.autoconfigure.context.ConfigurationPropertiesAutoConfiguration - org.springframework.boot.autoconfigure.context.ConfigurationPropertiesAutoConfiguration
 org.springframework.boot.autoconfigure.context.LifecycleAutoConfiguration - org.springframework.boot.autoconfigure.context.LifecycleAutoConfiguration
@@ -46,7 +45,7 @@ spring.task.execution-org.springframework.boot.autoconfigure.task.TaskExecutionP
 applicationTaskExecutorAsyncConfigurer - org.springframework.boot.autoconfigure.task.TaskExecutorConfigurations$ApplicationTaskExecutorAsyncConfigurer
 org.springframework.boot.autoconfigure.task.TaskExecutorConfigurations$AsyncConfigurerConfiguration - org.springframework.boot.autoconfigure.task.TaskExecutorConfigurations$AsyncConfigurerConfiguration
 org.springframework.boot.autoconfigure.task.TaskExecutorConfigurations$BootstrapExecutorConfiguration - org.springframework.boot.autoconfigure.task.TaskExecutorConfigurations$BootstrapExecutorConfiguration
-bootstrapExecutorAliasPostProcessor - org.springframework.boot.autoconfigure.task.TaskExecutorConfigurations$BootstrapExecutorConfiguration$$Lambda/0x00000236b4627348
+bootstrapExecutorAliasPostProcessor - org.springframework.boot.autoconfigure.task.TaskExecutorConfigurations$BootstrapExecutorConfiguration$$Lambda/0x000001eb4b666fb0
 org.springframework.boot.autoconfigure.task.TaskExecutorConfigurations$SimpleAsyncTaskExecutorBuilderConfiguration - org.springframework.boot.autoconfigure.task.TaskExecutorConfigurations$SimpleAsyncTaskExecutorBuilderConfiguration
 org.springframework.boot.autoconfigure.task.TaskExecutorConfigurations$TaskExecutorConfiguration - org.springframework.boot.autoconfigure.task.TaskExecutorConfigurations$TaskExecutorConfiguration
 org.springframework.boot.autoconfigure.task.TaskExecutorConfigurations$ThreadPoolTaskExecutorBuilderConfiguration - org.springframework.boot.autoconfigure.task.TaskExecutorConfigurations$ThreadPoolTaskExecutorBuilderConfiguration
@@ -66,7 +65,10 @@ org.springframework.boot.http.client.autoconfigure.HttpClientAutoConfiguration -
 spring.http.clients-org.springframework.boot.http.client.autoconfigure.HttpClientsProperties - org.springframework.boot.http.client.autoconfigure.HttpClientsProperties
 org.springframework.boot.http.client.autoconfigure.imperative.ImperativeHttpClientAutoConfiguration - org.springframework.boot.http.client.autoconfigure.imperative.ImperativeHttpClientAutoConfiguration
 spring.http.clients.imperative-org.springframework.boot.http.client.autoconfigure.imperative.ImperativeHttpClientsProperties - org.springframework.boot.http.client.autoconfigure.imperative.ImperativeHttpClientsProperties
+org.springframework.boot.http.client.autoconfigure.reactive.ReactiveHttpClientAutoConfiguration - org.springframework.boot.http.client.autoconfigure.reactive.ReactiveHttpClientAutoConfiguration
+spring.http.clients.reactive-org.springframework.boot.http.client.autoconfigure.reactive.ReactiveHttpClientsProperties - org.springframework.boot.http.client.autoconfigure.reactive.ReactiveHttpClientsProperties
 spring.http.serviceclient-org.springframework.boot.http.client.autoconfigure.service.HttpServiceClientProperties - org.springframework.boot.http.client.autoconfigure.service.HttpServiceClientProperties
+clientHttpConnectorBuilder - org.springframework.boot.http.client.reactive.ReactorClientHttpConnectorBuilder
 clientConvertersCustomizer - org.springframework.boot.http.converter.autoconfigure.DefaultClientHttpMessageConvertersCustomizer
 serverConvertersCustomizer - org.springframework.boot.http.converter.autoconfigure.DefaultServerHttpMessageConvertersCustomizer
 org.springframework.boot.http.converter.autoconfigure.HttpMessageConvertersAutoConfiguration - org.springframework.boot.http.converter.autoconfigure.HttpMessageConvertersAutoConfiguration
@@ -87,7 +89,6 @@ problemDetailJsonMapperBuilderCustomizer - org.springframework.boot.jackson.auto
 spring.jackson-org.springframework.boot.jackson.autoconfigure.JacksonProperties - org.springframework.boot.jackson.autoconfigure.JacksonProperties
 restTemplateBuilder - org.springframework.boot.restclient.RestTemplateBuilder
 restClientSsl - org.springframework.boot.restclient.autoconfigure.AutoConfiguredRestClientSsl
-httpMessageConvertersRestClientCustomizer - org.springframework.boot.restclient.autoconfigure.HttpMessageConvertersRestClientCustomizer
 org.springframework.boot.restclient.autoconfigure.RestClientAutoConfiguration - org.springframework.boot.restclient.autoconfigure.RestClientAutoConfiguration
 org.springframework.boot.restclient.autoconfigure.RestClientAutoConfiguration$HttpMessageConvertersConfiguration - org.springframework.boot.restclient.autoconfigure.RestClientAutoConfiguration$HttpMessageConvertersConfiguration
 restClientBuilderConfigurer - org.springframework.boot.restclient.autoconfigure.RestClientBuilderConfigurer
@@ -101,12 +102,14 @@ spring.security-org.springframework.boot.security.autoconfigure.SecurityProperti
 org.springframework.boot.security.autoconfigure.web.servlet.SecurityFilterAutoConfiguration - org.springframework.boot.security.autoconfigure.web.servlet.SecurityFilterAutoConfiguration
 spring.security.filter-org.springframework.boot.security.autoconfigure.web.servlet.SecurityFilterProperties - org.springframework.boot.security.autoconfigure.web.servlet.SecurityFilterProperties
 org.springframework.boot.security.autoconfigure.web.servlet.ServletWebSecurityAutoConfiguration - org.springframework.boot.security.autoconfigure.web.servlet.ServletWebSecurityAutoConfiguration
+org.springframework.boot.security.autoconfigure.web.servlet.ServletWebSecurityAutoConfiguration$EnableWebSecurityConfiguration - org.springframework.boot.security.autoconfigure.web.servlet.ServletWebSecurityAutoConfiguration$EnableWebSecurityConfiguration
 org.springframework.boot.security.autoconfigure.web.servlet.ServletWebSecurityAutoConfiguration$PathPatternRequestMatcherBuilderConfiguration - org.springframework.boot.security.autoconfigure.web.servlet.ServletWebSecurityAutoConfiguration$PathPatternRequestMatcherBuilderConfiguration
 org.springframework.boot.security.oauth2.client.autoconfigure.OAuth2ClientAutoConfiguration - org.springframework.boot.security.oauth2.client.autoconfigure.OAuth2ClientAutoConfiguration
 org.springframework.boot.security.oauth2.client.autoconfigure.OAuth2ClientConfigurations$ClientRegistrationRepositoryConfiguration - org.springframework.boot.security.oauth2.client.autoconfigure.OAuth2ClientConfigurations$ClientRegistrationRepositoryConfiguration
 org.springframework.boot.security.oauth2.client.autoconfigure.OAuth2ClientConfigurations$OAuth2AuthorizedClientServiceConfiguration - org.springframework.boot.security.oauth2.client.autoconfigure.OAuth2ClientConfigurations$OAuth2AuthorizedClientServiceConfiguration
 spring.security.oauth2.client-org.springframework.boot.security.oauth2.client.autoconfigure.OAuth2ClientProperties - org.springframework.boot.security.oauth2.client.autoconfigure.OAuth2ClientProperties
 org.springframework.boot.security.oauth2.client.autoconfigure.servlet.OAuth2ClientWebSecurityAutoConfiguration - org.springframework.boot.security.oauth2.client.autoconfigure.servlet.OAuth2ClientWebSecurityAutoConfiguration
+org.springframework.boot.security.oauth2.client.autoconfigure.servlet.OAuth2ClientWebSecurityAutoConfiguration$OAuth2SecurityFilterChainConfiguration - org.springframework.boot.security.oauth2.client.autoconfigure.servlet.OAuth2ClientWebSecurityAutoConfiguration$OAuth2SecurityFilterChainConfiguration
 org.springframework.boot.servlet.autoconfigure.HttpEncodingAutoConfiguration - org.springframework.boot.servlet.autoconfigure.HttpEncodingAutoConfiguration
 org.springframework.boot.servlet.autoconfigure.MultipartAutoConfiguration - org.springframework.boot.servlet.autoconfigure.MultipartAutoConfiguration
 spring.servlet.multipart-org.springframework.boot.servlet.autoconfigure.MultipartProperties - org.springframework.boot.servlet.autoconfigure.MultipartProperties
@@ -123,7 +126,7 @@ server.tomcat-org.springframework.boot.tomcat.autoconfigure.TomcatServerProperti
 org.springframework.boot.tomcat.autoconfigure.servlet.TomcatServletWebServerAutoConfiguration - org.springframework.boot.tomcat.autoconfigure.servlet.TomcatServletWebServerAutoConfiguration
 tomcatServletWebServerFactoryCustomizer - org.springframework.boot.tomcat.autoconfigure.servlet.TomcatServletWebServerFactoryCustomizer
 tomcatServletWebServerFactory - org.springframework.boot.tomcat.servlet.TomcatServletWebServerFactory
-org.springframework.boot.context.properties.EnableConfigurationPropertiesRegistrar.methodValidationExcludeFilter - org.springframework.boot.validation.beanvalidation.MethodValidationExcludeFilter$$Lambda/0x00000236b44231a0
+org.springframework.boot.context.properties.EnableConfigurationPropertiesRegistrar.methodValidationExcludeFilter - org.springframework.boot.validation.beanvalidation.MethodValidationExcludeFilter$$Lambda/0x000001eb4b45d578
 errorPageRegistrarBeanPostProcessor - org.springframework.boot.web.error.ErrorPageRegistrarBeanPostProcessor
 webServerFactoryCustomizerBeanPostProcessor - org.springframework.boot.web.server.WebServerFactoryCustomizerBeanPostProcessor
 server-org.springframework.boot.web.server.autoconfigure.ServerProperties - org.springframework.boot.web.server.autoconfigure.ServerProperties
@@ -157,6 +160,7 @@ lifecycleProcessor - org.springframework.context.support.DefaultLifecycleProcess
 propertySourcesPlaceholderConfigurer - org.springframework.context.support.PropertySourcesPlaceholderConfigurer
 org.springframework.boot.autoconfigure.internalCachingMetadataReaderFactory - org.springframework.core.type.classreading.CachingMetadataReaderFactory
 clientHttpRequestFactory - org.springframework.http.client.HttpComponentsClientHttpRequestFactory
+clientHttpConnector - org.springframework.http.client.reactive.ReactorClientHttpConnector
 stringHttpMessageConverter - org.springframework.http.converter.StringHttpMessageConverter
 jacksonJsonHttpMessageConverter - org.springframework.http.converter.json.JacksonJsonHttpMessageConverter
 applicationTaskExecutor - org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor
@@ -189,7 +193,7 @@ oAuth2AuthorizedClientManager - org.springframework.security.oauth2.client.Autho
 authorizedClientService - org.springframework.security.oauth2.client.InMemoryOAuth2AuthorizedClientService
 clientRegistrationRepository - org.springframework.security.oauth2.client.registration.InMemoryClientRegistrationRepository
 authorizedClientRepository - org.springframework.security.oauth2.client.web.AuthenticatedPrincipalOAuth2AuthorizedClientRepository
-securityFilterChain - org.springframework.security.web.DefaultSecurityFilterChain
+oauth2SecurityFilterChain - org.springframework.security.web.DefaultSecurityFilterChain
 privilegeEvaluator - org.springframework.security.web.access.RequestMatcherDelegatingWebInvocationPrivilegeEvaluator
 requestDataValueProcessor - org.springframework.security.web.servlet.support.csrf.CsrfRequestDataValueProcessor
 pathPatternRequestMatcherBuilder - org.springframework.security.web.servlet.util.matcher.PathPatternRequestMatcher$Builder
