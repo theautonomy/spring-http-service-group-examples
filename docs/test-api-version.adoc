@@ -1,0 +1,168 @@
+= RestClientContainer Test Endpoints
+
+Test endpoints for validating `RestClientContainer` configuration including authentication, API versioning, and HTTP service client integration.
+
+== Container Information
+
+=== List Available Clients
+Lists all registered RestClient names in the container.
+
+[source]
+----
+GET http://localhost:9090/restclient-container/restclient-names
+----
+
+== Basic Client Testing
+
+=== Test All Clients
+Tests all configured RestClients (jph, ara, httpbin) with their default paths.
+Validates authentication configuration if configured: bearer (jph), none (ara), basic (httpbin).
+
+[source]
+----
+GET http://localhost:9090/restclient-container/test-all-restclients
+----
+
+=== Test Specific Client
+Tests a specific RestClient using root path. Uses default API version from properties if configured
+
+[source]
+----
+GET http://localhost:9090/restclient-container/test-one-restclinet/{name}
+
+# Examples:
+GET http://localhost:9090/restclient-container/test-one-restclinet/jph
+GET http://localhost:9090/restclient-container/test-one-restclinet/ara
+GET http://localhost:9090/restclient-container/test-one-restclinet/httpbin
+----
+
+=== Test Client with Custom Path
+Tests a specific RestClient with custom path. Uses default API version from properties if configured
+
+[source]
+----
+GET http://localhost:9090/restclient-container/test-one-restclinet/{name}/{path}
+
+# Examples:
+GET http://localhost:9090/restclient-container/test-one-restclinet/jph/posts/1
+GET http://localhost:9090/restclient-container/test-one-restclinet/ara/objects
+GET http://localhost:9090/restclient-container/test-one-restclinet/httpbin/get
+----
+
+== API Versioning Testing
+
+=== Test with Per-Request API Version
+Tests API versioning override 
+
+Demonstrates two approaches:
+
+* `response`: Uses pre-built RestClient with configured inserter, sets version per-request
+* `response2`: Uses RestClient.Builder to override the inserter, then sets version per-request
+
+[source]
+----
+GET http://localhost:9090/restclient-container/test-set-api-version/{name}/{version}/{path}
+
+# Examples:
+# Uses X-API-VERSION header (configured in properties)
+GET http://localhost:9090/restclient-container/test-set-api-version/jph/2.0/posts/1
+
+# Uses query parameter (configured in properties)
+GET http://localhost:9090/restclient-container/test-set-api-version/ara/3.0/objects
+----
+
+== RestClient.Builder Testing
+
+=== Test Builder Customization
+Demonstrates using `getBuilder()` to get a pre-configured builder and customize it.
+
+[source]
+----
+GET http://localhost:9090/restclient-container/test-restclient-builder/{name}
+
+# Example:
+GET http://localhost:9090/restclient-container/test-restclient-builder/jph
+----
+
+== HTTP Service Interface Testing
+
+=== Test JsonPlaceholderClient with Pre-built RestClient
+Tests HTTP service interface (JsonPlaceholderClient) using pre-built RestClient from container.
+The `getPostById` method has `@GetExchange(version="2.0.0")`, so it uses version 2.0.0
+instead of the default version (1.0) configured in properties.
+
+[source]
+----
+GET http://localhost:9090/restclient-container/test-jph-exchange-client-by-restclient/{postId}
+
+# Example:
+GET http://localhost:9090/restclient-container/test-jph-exchange-client-by-restclient/1
+----
+
+=== Test JsonPlaceholderClient with RestClient.Builder
+Tests HTTP service interface (JsonPlaceholderClient) using RestClient.Builder from container.
+The `getPostById` method has `@GetExchange(version="2.0.0")`, so it uses version 2.0.0
+instead of the default version (1.0) configured in properties.
+
+[source]
+----
+GET http://localhost:9090/restclient-container/test-jph-exchange-client-by-restclient-builder/{postId}
+
+# Example:
+GET http://localhost:9090/restclient-container/test-jph-exchange-client-by-restclient-builder/1
+----
+
+== API Version Insertion Methods
+
+Different clients are configured with different API version insertion methods:
+
+|===
+|Client |Insertion Method |Header/Parameter |Default Version
+
+|jph
+|Header
+|X-API-VERSION
+|1.0
+
+|ara
+|Query Parameter
+|api-version
+|2.0
+
+|github
+|Path Segment
+|position 0
+|v3
+
+|httpbin
+|Media Type Parameter
+|version (in Content-Type)
+|1.5
+|===
+
+== Quick Test Commands
+
+[source,bash]
+----
+# List all available clients
+curl http://localhost:9090/restclient-container/restclient-names
+
+# Test all clients
+curl http://localhost:9090/restclient-container/test-all-restclients
+
+# Test default API version (1.0) via header
+curl http://localhost:9090/restclient-container/test-one-restclinet/jph/posts/1
+
+# Test custom API version (2.0) via header
+curl http://localhost:9090/restclient-container/test-set-api-version/jph/2.0/posts/1
+
+# Test query parameter API version
+curl http://localhost:9090/restclient-container/test-one-restclinet/ara/objects
+
+# Test RestClient.Builder customization
+curl http://localhost:9090/restclient-container/test-restclient-builder/jph
+
+# Test HTTP service interface with method-level version annotation
+curl http://localhost:9090/restclient-container/test-jph-exchange-client-by-restclient/1
+curl http://localhost:9090/restclient-container/test-jph-exchange-client-by-restclient-builder/1
+----
